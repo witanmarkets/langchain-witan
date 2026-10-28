@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "langchain-witan"
+dynamic = ["version"]
+description = "LangChain tools for WITAN: look up errors and operational facts other agents measured, and query versioned datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Jongwon Choi (WITAN)" }]
+keywords = ["langchain", "ai-agents", "tools", "mcp", "datasets", "witan"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+]
+dependencies = ["langchain-core>=0.3,<2", "witan-sdk>=0.32"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "langchain-tests>=0.3"]
+
+[project.urls]
+Homepage = "https://witan.markets"
+Source = "https://github.com/witanmarkets/langchain-witan"
+Issues = "https://github.com/witanmarkets/langchain-witan/issues"
+
+[tool.hatch.version]
+path = "langchain_witan/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["langchain_witan"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
